@@ -1,11 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../App';
 import './Header.css';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileNavRef = useRef(null);
   const overlayRef = useRef(null);
+  const { isAuthenticated, logout, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -13,6 +16,12 @@ const Header = () => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+    closeMobileMenu();
   };
 
   React.useEffect(() => {
@@ -48,15 +57,14 @@ const Header = () => {
           <div className="logo-container">
             <Link to="/" className="logo-link">
               <picture className="logo-picture">
-                <source srcSet="/aaa-logo.svg" type="image/svg+xml" />
-                <source srcSet="/aaa-logo-large.png" media="(min-width: 768px)" type="image/png" />
-                <source srcSet="/aaa-logo-small.png" type="image/png" />
-                <img src="/aaa-logo.svg" alt="AAA Logo" className="logo-img" />
+                <source srcSet={`${process.env.PUBLIC_URL}/AAA.jpeg`} type="image/jpeg" />
+                <img src={`${process.env.PUBLIC_URL}/AAA.jpeg`} alt="AAA Logo" className="logo-img" loading="eager" />
               </picture>
-              <div className="logo-text-container">
+
+              {/* <div className="logo-text-container">
                 <span className="logo-text">AAA</span>
                 <span className="logo-subtitle">Services Directory</span>
-              </div>
+              </div> */}
             </Link>
           </div>
 
@@ -65,80 +73,56 @@ const Header = () => {
             <Link to="/services" className="nav-link">Services</Link>
             <Link to="/about" className="nav-link">About Us</Link>
             <Link to="/contact" className="nav-link">Contact</Link>
+            {isAuthenticated ? (
+              <>
+                <span className="user-name">Welcome, {user?.username}</span>
+                <button onClick={handleLogout} className="nav-link logout-btn">Logout</button>
+              </>
+            ) : (
+              <Link to="/login" className="nav-link">Login</Link>
+            )}
           </div>
 
+          {/* Hamburger Menu Button */}
           <div className="hamburger-menu">
-            <button 
-              className={`hamburger-btn ${isMobileMenuOpen ? 'active' : ''}`} 
+            <button
+              className={`hamburger-btn ${isMobileMenuOpen ? 'active' : ''}`}
               onClick={toggleMobileMenu}
               aria-label="Toggle mobile navigation"
             >
-              <span className="hamburger-icon">
-                <span className="bar"></span>
-                <span className="bar"></span>
-                <span className="bar"></span>
-              </span>
+              <span className="bar"></span>
+              <span className="bar"></span>
+              <span className="bar"></span>
             </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`mobile-nav ${isMobileMenuOpen ? 'active' : ''}`} ref={mobileNavRef}>
+          <div className="mobile-menu">
+            <div className="mobile-nav-header">
+              <button className="close-btn" onClick={closeMobileMenu}>×</button>
+            </div>
+            <nav className="mobile-nav-links">
+              <Link to="/" className="mobile-nav-link" onClick={closeMobileMenu}>Home</Link>
+              <Link to="/services" className="mobile-nav-link" onClick={closeMobileMenu}>Services</Link>
+              <Link to="/about" className="mobile-nav-link" onClick={closeMobileMenu}>About Us</Link>
+              <Link to="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>Contact</Link>
+              {isAuthenticated ? (
+                <>
+                  <span className="user-name">Welcome, {user?.username}</span>
+                  <button onClick={handleLogout} className="mobile-nav-link logout-btn">Logout</button>
+                </>
+              ) : (
+                <Link to="/login" className="mobile-nav-link" onClick={closeMobileMenu}>Login</Link>
+              )}
+            </nav>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
-      <div 
-        ref={mobileNavRef}
-        className={`mobile-nav ${isMobileMenuOpen ? 'active' : ''}`} 
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="mobile-nav-label"
-      >
-        <div className="mobile-nav-header">
-          <button 
-            className="close-btn" 
-            onClick={closeMobileMenu}
-            aria-label="Close mobile navigation"
-          >
-            <span className="close-icon">×</span>
-          </button>
-        </div>
-
-        <div className="mobile-nav-links">
-          <Link 
-            to="/" 
-            className="nav-link" 
-            onClick={closeMobileMenu}
-            tabIndex={isMobileMenuOpen ? 0 : -1}
-          >
-            Home
-          </Link>
-          <Link 
-            to="/services" 
-            className="nav-link" 
-            onClick={closeMobileMenu}
-            tabIndex={isMobileMenuOpen ? 0 : -1}
-          >
-            Services
-          </Link>
-          <Link 
-            to="/about" 
-            className="nav-link" 
-            onClick={closeMobileMenu}
-            tabIndex={isMobileMenuOpen ? 0 : -1}
-          >
-            About Us
-          </Link>
-          <Link 
-            to="/contact" 
-            className="nav-link" 
-            onClick={closeMobileMenu}
-            tabIndex={isMobileMenuOpen ? 0 : -1}
-          >
-            Contact
-          </Link>
-        </div>
-      </div>
-
       {/* Add overlay */}
-      <div 
+      <div
         ref={overlayRef}
         className={`mobile-nav-overlay ${isMobileMenuOpen ? 'active' : ''}`}
         onClick={closeMobileMenu}

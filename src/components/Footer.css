@@ -32,7 +32,10 @@
   margin-bottom: clamp(0.75rem, 2vw, 1.5rem);
   font-size: clamp(0.8rem, 2vw, 0.95rem);
 }
-
+.footer-bottom{
+  display: flex;
+  justify-content: center;
+}
 /* Social Links */
 .social-links {
   display: flex;

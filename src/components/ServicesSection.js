@@ -1,4 +1,7 @@
 import React from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import './ServicesSection.css';
 import CategoryCard from './CategoryCard';
 import ServiceCard from './ServiceCard';
@@ -7,35 +10,35 @@ const ServicesSection = () => {
     const categories = [
         { 
             id: 1, 
-            name: 'Healthcare', 
-            icon: 'fas fa-hospital',
-            image: 'images/healthcare.jpg',
+            name: 'Plumbering', 
+            icon: 'fas fa-sink',
+            image: 'images/plumbering.jpg',
             bgColor: '#E3F2FD',
             gradient: 'linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%)',
             iconColor: '#1976D2'
         },
         { 
             id: 2, 
-            name: 'Education', 
-            icon: 'fas fa-graduation-cap',
-            image: 'images/education.jpg',
+            name: 'Electrition', 
+            icon: 'fas fa-screwdriver-wrench',
+            image: 'images/electrician.jpg',
             bgColor: '#F3E5F5',
             gradient: 'linear-gradient(135deg, #F3E5F5 0%, #CE93D8 100%)',
             iconColor: '#7B1FA2'
         },
         { 
             id: 3, 
-            name: 'Transportation', 
-            icon: 'fas fa-car',
-            image: 'images/transportation.jpg',
+            name: 'Painting', 
+            icon: 'fas fa-paint-roller',
+            image: 'images/painting.jpg',
             bgColor: '#E8F5E9',
             gradient: 'linear-gradient(135deg, #E8F5E9 0%, #A5D6A7 100%)',
             iconColor: '#388E3C'
         },
         { 
             id: 4, 
-            name: 'Food & Dining', 
-            icon: 'fas fa-utensils',
+            name: 'Food', 
+            icon: 'fas fa-burger',
             image: 'images/food.jpg',
             bgColor: '#FFF3E0',
             gradient: 'linear-gradient(135deg, #FFF3E0 0%, #FFB74D 100%)',
@@ -43,18 +46,18 @@ const ServicesSection = () => {
         },
         { 
             id: 5, 
-            name: 'Entertainment', 
-            icon: 'fas fa-film',
-            image: 'images/entertainment.jpg',
+            name: 'Transportation', 
+            icon: 'fas fa-taxi',
+            image: 'images/transportation.jpg',
             bgColor: '#FCE4EC',
             gradient: 'linear-gradient(135deg, #FCE4EC 0%, #F48FB1 100%)',
             iconColor: '#C2185B'
         },
         { 
             id: 6, 
-            name: 'Professional Services', 
-            icon: 'fas fa-briefcase',
-            image: 'images/professional.jpg',
+            name: 'AC Services', 
+            icon: 'fas fa-toolbox',
+            image: 'images/ac.jpg',
             bgColor: '#ECEFF1',
             gradient: 'linear-gradient(135deg, #ECEFF1 0%, #B0BEC5 100%)',
             iconColor: '#455A64'
@@ -64,14 +67,14 @@ const ServicesSection = () => {
     const services = [
         { 
             id: 1, 
-            name: 'Medical Consultation',
+            name: 'Plumbering',
             category: 'Healthcare',
-            description: '24/7 online medical consultation services with certified healthcare professionals',
-            icon: 'fas fa-stethoscope',
+            description: 'Fast, reliable plumbing solutions with expert service and 24/7 availability.',
+            icon: 'fas fa-sink',
             image: 'images/medical-consultation.jpg',
             rating: 4.8,
             reviews: 128,
-            features: ['24/7 Availability', 'Video Consultations', 'Prescription Services'],
+            features: ['Leak Repairs', 'Drain Cleaning', 'Fixture Installation'],
             price: 'From $49',
             badge: 'Popular'
         },
@@ -115,25 +118,59 @@ const ServicesSection = () => {
             badge: 'Fast Delivery'
         }
     ];
-  return (
-    <section className="services-section">
-      <div className="container">
-        <h1>Service Categories</h1>
-        <div className="category-grid">
-          {categories.map(category => (
-            <CategoryCard key={category.id} category={category} />
-          ))}
-        </div>
 
-        <h1>Featured Services</h1>
-        <div className="services-grid">
-          {services.map(service => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+    const sliderSettings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
+
+    return (
+        <section className="services-section">
+            <div className="container">
+                <h1>Service Categories</h1>
+                <div className="categories-container">
+                    <Slider {...sliderSettings}>
+                        {categories.map(category => (
+                            <CategoryCard key={category.id} category={category} />
+                        ))}
+                    </Slider>
+                </div>
+
+                <h1>Featured Services</h1>
+                <div className="services-grid">
+                    {services.map(service => (
+                        <ServiceCard key={service.id} service={service} />
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
 };
 
 export default ServicesSection;

@@ -6,67 +6,67 @@ const Services = () => {
   const services = [
     {
       id: 1,
-      title: 'Web Development',
-      description: 'Professional web development services using modern technologies',
-      icon: '💻',
-      category: 'Development',
-      tags: ['Web', 'Frontend', 'Backend', 'Full Stack']
+      title: 'Plumbing Services',
+      description: 'Professional plumbing repairs and installations',
+      icon: '🚰',
+      category: 'Plumbing',
+      tags: ['Repairs', 'Installation', 'Maintenance', 'Emergency']
     },
     {
       id: 2,
-      title: 'Mobile Apps',
-      description: 'Custom mobile application development for iOS and Android',
-      icon: '📱',
-      category: 'Development',
-      tags: ['Mobile', 'iOS', 'Android', 'React Native']
+      title: 'Electrical Work',
+      description: 'Expert electrical services for your home and office',
+      icon: '⚡',
+      category: 'Electrical',
+      tags: ['Wiring', 'Installation', 'Repairs', 'Safety']
     },
     {
       id: 3,
-      title: 'Cloud Solutions',
-      description: 'Scalable cloud infrastructure and deployment services',
-      icon: '☁️',
-      category: 'Cloud',
-      tags: ['AWS', 'Azure', 'Google Cloud', 'DevOps']
+      title: 'Food Catering',
+      description: 'Delicious catering services for all occasions',
+      icon: '👨‍🍳',
+      category: 'Food',
+      tags: ['Catering', 'Events', 'Private Chef', 'Parties']
     },
     {
       id: 4,
-      title: 'Digital Marketing',
-      description: 'Comprehensive digital marketing strategies',
-      icon: '📈',
-      category: 'Marketing',
-      tags: ['SEO', 'SEM', 'Social Media', 'Analytics']
+      title: 'Home Painting',
+      description: 'Professional painting services for interior and exterior',
+      icon: '🎨',
+      category: 'Painting',
+      tags: ['Interior', 'Exterior', 'Commercial', 'Residential']
     },
     {
       id: 5,
-      title: 'UI/UX Design',
-      description: 'Modern and user-friendly interface design solutions',
-      icon: '🎨',
-      category: 'Design',
-      tags: ['UI', 'UX', 'Prototyping', 'Wireframing']
+      title: 'Home Cleaning',
+      description: 'Thorough home and office cleaning services',
+      icon: '🧹',
+      category: 'Cleaning',
+      tags: ['Deep Clean', 'Regular', 'Commercial', 'Residential']
     },
     {
       id: 6,
-      title: 'SEO Optimization',
-      description: 'Search engine optimization for better online visibility',
-      icon: '🎯',
-      category: 'Marketing',
-      tags: ['SEO', 'Keywords', 'Ranking', 'Content']
+      title: 'Gardening & Lawn',
+      description: 'Professional garden maintenance and landscaping',
+      icon: '🌿',
+      category: 'Gardening',
+      tags: ['Maintenance', 'Landscaping', 'Design', 'Care']
     },
     {
       id: 7,
-      title: 'Social Media Management',
-      description: 'Professional social media marketing and management',
-      icon: '👥',
-      category: 'Marketing',
-      tags: ['Social Media', 'Content', 'Analytics', 'Engagement']
+      title: 'Home Repairs',
+      description: 'General home repair and maintenance services',
+      icon: '🔨',
+      category: 'Repairs',
+      tags: ['Maintenance', 'Fixes', 'Installation', 'Emergency']
     },
     {
       id: 8,
-      title: 'Content Creation',
-      description: 'High-quality content creation for all platforms',
-      icon: '📝',
-      category: 'Content',
-      tags: ['Writing', 'Video', 'Graphics', 'Strategy']
+      title: 'Moving & Transport',
+      description: 'Professional moving and transportation services',
+      icon: '🚛',
+      category: 'Moving',
+      tags: ['Relocation', 'Packing', 'Storage', 'Furniture Moving']
     }
   ];
 
@@ -115,11 +115,14 @@ const Services = () => {
             onChange={(e) => setSelectedCategory(e.target.value)}
           >
             <option value="">All Categories</option>
-            <option value="Development">Development</option>
-            <option value="Cloud">Cloud</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Design">Design</option>
-            <option value="Content">Content</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Food">Food</option>
+            <option value="Painting">Painting</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Gardening">Gardening</option>
+            <option value="Repairs">Repairs</option>
+            <option value="Moving">Moving</option>
           </select>
         </div>
       </div>
