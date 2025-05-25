@@ -7,7 +7,6 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import ServicesSection from './components/ServicesSection';
 import Login from './pages/Login';
 import Home from './pages/Home';
 
@@ -88,7 +87,7 @@ function App() {
               } />
               <Route path="/" element={
                 <ProtectedRoute>
-                  <ServicesSection />
+                  <Home />
                 </ProtectedRoute>
               } />
               <Route path="/services" element={
